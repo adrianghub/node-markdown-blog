@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
       description: 'Test description'
       },
   ]
-  res.render('index', { posts: posts })
+  res.render('posts/index', { posts: posts })
 })
 
 
