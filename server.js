@@ -11,6 +11,7 @@ console.log("Connected to Database");
 
 app.set('view engine', 'ejs');
 
+app.use(express.urlencoded({ extended: false }))
 app.use('/posts', postRouter);
 
 app.get('/', (req, res) => {
@@ -24,7 +25,7 @@ app.get('/', (req, res) => {
       title: 'Test Post 😀😀😀',
       createdAt: new Date(),
       description: 'Test description'
-      },
+    },
   ]
   res.render('posts/index', { posts: posts })
 })
