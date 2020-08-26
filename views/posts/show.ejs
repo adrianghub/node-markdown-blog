@@ -13,7 +13,7 @@
     <a href="/" class="btn btn-secondary">All Posts</a>
     <a href="/edit/edit/<%= post.slug %>" class="btn btn-info">Edit</a>
     <div>
-      <%= post.markdown %>
+      <%- post.sanitizedHtml %>
     </div>
   </div>
 </body>
