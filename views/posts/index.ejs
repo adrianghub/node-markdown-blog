@@ -18,6 +18,7 @@
           <div class="card-subtitle text-muted mb-2"><%= post.createdAt.toLocaleDateString() %></div>
           <div class="card-text mb-2"><%= post.description %></div>
           <a href="posts/<%= post.slug %>" class="btn btn-primary">Read More</a>
+          <a href="posts/edit/<%= post.id %>" class="btn btn-info">Edit</a>
           <form class="d-inline" action="/posts/<%= post.id %>?_method=DELETE" method="POST">
           <button type="submit" class="btn btn-danger">Delete Post</button></form>
         </div>
