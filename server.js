@@ -1,19 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const postRouter= require('./routes/posts');
-const Post = require('./models/post')
+const Post = require('./models/post');
+const methodOverride = require('method-override');
 const app = express();
 
-mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }).then(() => {
 console.log("Connected to Database");
 }).catch((err) => {
     console.log("Not Connected to Database ERROR! ", err);
 });
 
 app.set('view engine', 'ejs');
-
 app.use(express.urlencoded({ extended: false }))
-app.use('/posts', postRouter);
+app.use(methodOverride('_method'));
 
 app.get('/', async (req, res) => {
   const posts = await Post.find().sort({
@@ -21,5 +21,6 @@ app.get('/', async (req, res) => {
   res.render('posts/index', { posts: posts })
 })
 
+app.use('/posts', postRouter);
 
 app.listen(3000)
